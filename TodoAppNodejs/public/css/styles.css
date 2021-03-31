@@ -1,0 +1,49 @@
+
+
+footer {
+  color: white;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.todo{
+
+  margin-top:20px;
+  padding: 10px;
+
+}
+
+.navcustom {
+  background-color: #7cd1f9;
+}
+
+.btn-outline-success {
+  color: white!important;
+  border-color:white!important;
+}
+
+.btn-outline-success:hover {
+  background-color: #0d6efd!important;
+  border-color:white!important;
+}
+
+.login {
+  width: 40%;
+  margin-right:30%!important;
+  margin-left: 30%!important;
+  margin-top: 150px!important;
+}
+
+.lgnbtn{
+  width: 300px!important;
+  /* margin-right:25%!important;
+  margin-left: 25%!important;
+  margin-top: 50px!important; */
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}

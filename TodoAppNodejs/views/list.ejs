@@ -1,0 +1,101 @@
+<%- include('header.ejs') -%>
+
+<input type="hidden" id="username" name="username" value="<%= username %>">
+
+<nav class="navbar navbar-light navcustom">
+    <form class="container-fluid justify-content-start">
+      <div class="row" style="width: 100%;">
+        <div class="col-10"><button class="btn btn-outline-success " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" >Yeni Görev Ekle</button></div>
+        <div class="col-2"> <button class="btn btn-outline-danger " type="button" id="close" >Çıkış</button></div>
+      </div>
+ 
+     
+    </form>
+  </nav>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+   
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Görev Ekle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" role="alert" style="display: none;" id="uyari">
+          A simple primary alert—check it out!
+        </div>
+
+          <div class="mb-3">
+            <label for="gadi" class="col-form-label">Görev Adı:</label>
+            <input type="text" class="form-control" name="gadi" id="gadi"/>
+          </div>
+          <div class="mb-3">
+            <label for="gKategoriFor" class="col-form-label">Kategori:</label>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="gkategori">
+                <option value="Analiz">Analiz</option>
+                <option value="Tasarım">Tasarım</option>
+                <option value="Kodlama">Kodlama</option>
+                <option value="Test">Test</option>
+              </select>
+          </div>
+          <div class="mb-3">
+            <label for="gaciklamaFor" class="col-form-label">Görev Açıklaması:</label>
+            <input type="text" class="form-control" name="gaciklama"/>
+          </div>
+          <div class="mb-3">         
+                <label for="gbasFor" class="col-form-label">Bas.Tarih:</label>
+                <input class="form-control" type="date" value="2021-01-01" name="gbas"/>
+          </div>
+          <div class="mb-3">         
+            <label for="gbitFor" class="col-form-label">Bit.Tarih:</label>
+            <input class="form-control" type="date" value="2021-01-01" name="gbit" />
+      </div>
+      <div class="mb-3">
+        <label for="gDurumFor" class="col-form-label">Durum:</label>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="gdurum">
+            <option value="Beklemede">Beklemede</option>
+            <option value="Devam Ediyor">Devam Ediyor</option>
+            <option value="Tamamlanan">Tamamlanan</option>
+          </select>
+      </div>
+      <button type="submit" class="btn btn-primary" name="btnSave" id="btnKaydet">Kaydet</button>   
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<div class="row todo">
+
+    <div class="col-12 col-md-4 ">
+        <ul class="list-group">
+            <li class="list-group-item active" aria-current="true">Bekleyenler</li>
+
+            <% for(let i=0; i<bekList.length;i++){ %>
+              <li class="list-group-item"><%= bekList[i].gadi + "-"+ bekList[i].gaciklama +"-"+bekList[i].gkategori+"-("+bekList[i].gbas+"  "+bekList[i].gbit +")"  %></li>
+                  <% } %>
+
+           
+          </ul>
+    </div>
+    <div class="col-12 col-md-4">
+        <ul class="list-group">
+            <li class="list-group-item active" aria-current="true">Devam Edenler</li>
+            <% for(let i=0; i<devList.length;i++){ %>
+              <li class="list-group-item"><%= devList[i].gadi + "-"+ devList[i].gaciklama +"-"+devList[i].gkategori+"-("+devList[i].gbas+"  "+devList[i].gbit+")"  %></li>
+                  <% } %>
+          </ul>
+    </div>
+    <div class="col-12 col-md-4">
+        <ul class="list-group">
+            <li class="list-group-item active" aria-current="true">Tamamlananlar</li>
+            <% for(let i=0; i<tamList.length;i++){ %>
+              <li class="list-group-item"><%= tamList[i].gadi + "-"+ tamList[i].gaciklama +"-"+tamList[i].gkategori+"-)"+tamList[i].gbas+"  "+tamList[i].gbit+")"  %></li>
+                  <% } %>
+
+          </ul>
+    </div>
+</div>
+
+<%- include('footer.ejs') -%>

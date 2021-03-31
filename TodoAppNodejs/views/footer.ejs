@@ -1,0 +1,93 @@
+
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+   
+   <script type="text/javascript">
+
+        $(function(){				
+                $('#btnKaydet').click(function(e){
+
+
+                    e.preventDefault();
+					var data = {};
+					data.gadi = $("input[name*='gadi']").val();
+                    data.gaciklama = $("input[name*='gaciklama']").val();
+                    data.gkategori = $("select[name*='gkategori']").val();
+                    data.gbas = $("input[name*='gbas']").val();
+                    data.gbit = $("input[name*='gbit']").val();
+                    data.gdurum = $("select[name*='gdurum']").val();
+                    data.username=$("input[name*='username']").val();
+
+                    if(data.gadi==""){
+                        $("#uyari").show();
+                        $("#uyari").text("Görev adı alanını giriniz");
+                        return false;
+
+                    }else if(data.gaciklama==""){
+                        $("#uyari").show();
+                        $("#uyari").text("Görev aciklamasi alanını giriniz.");
+                        return false;
+                    }else{
+
+                        if(new Date(data.gbit) <= new Date(data.gbas))
+                        {
+                         $("#uyari").show();
+                         $("#uyari").text("Bitiş tarihi başlangıç tarihinden küçüktür.");
+                         return false;   
+                        }
+
+                        $("#uyari").hide();
+                    }
+
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: 'http://localhost:3001/kaydet',						
+                        success: function(data) {
+                            $('#exampleModal').modal('hide');
+                            window.location.href = "http://localhost:3001/main?username="+data;
+                        }
+                    });
+
+                  
+
+                });		
+                
+
+                
+                $("#login").click(function(){
+                    var data = {};
+					data.username = $("input[name*='usr']").val();
+                    data.password = $("input[name*='pass']").val();
+
+                    $.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: 'http://localhost:3001/loginsave',						
+                        success: function(data) {
+                            console.log(data);
+                            window.location.href = "http://localhost:3001/main?username="+data;
+                            
+                        }
+                    });
+
+
+                })
+
+                $("#close").click(function(){
+                
+                    window.location.href = "http://localhost:3001/";
+
+
+                });
+
+
+            });
+    </script>
+    
+    
+</html>
